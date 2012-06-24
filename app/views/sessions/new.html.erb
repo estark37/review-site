@@ -1,0 +1,47 @@
+<%= render "shared/login_header" %>
+
+<div class="modal-body">
+
+  <%= form_for :session, :url => sessions_path, :html =>
+        { "data-result-container" => "#login" } do |f| %>
+
+  <fieldset class="control-group error hidden" id="ajax_err">
+    <h4>
+      <span class="help-inline">
+        Sorry, we can't log you in at this time.
+      </span>
+    </h4>
+  </fieldset>
+
+  <% flash.each do |key, value| %>
+  <% if key == :badlogin %>
+  <fieldset class="control-group error">
+    <h4>
+      <span class="help-inline">
+        Your email or password is incorrect.
+      </span>
+    </h4>
+  </fieldset>
+  <% end %>
+  <% end %>
+
+  <fieldset class="control-group">
+    <%= f.label :email, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :email %>
+    </div>
+  </fieldset>
+
+  <fieldset class="control-group">
+    <%= f.label :password, :class => "control-label" %>
+    <div class="controls">
+      <%= f.password_field :password %>
+    </div>
+    
+  </fieldset>  
+
+  <%= f.submit "Log in", :class => "btn btn-primary btn-large" %>
+
+  <% end %>
+
+</div>

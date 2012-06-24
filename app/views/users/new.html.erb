@@ -1,0 +1,69 @@
+<%= render "shared/signup_header" %>
+
+<div class="modal-body">
+
+  <%= form_for @user, :html => 
+        { "data-result-container" => "#signup" } do |f| %>
+
+ <fieldset class="control-group error hidden" id="ajax_err">
+    <h4>
+      <span class="help-inline">
+        Sorry, your registration could not be completed.
+      </span>
+    </h4>
+  </fieldset>
+
+  <fieldset class="control-group 
+                   <% if @user.errors[:email].any? %>error<% end %>">
+    <%= f.label :email, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :email %>
+      <% if @user.errors[:email].any? %>
+      <span class="help-inline">Email <%= @user.errors[:email] %>.</span>
+      <% end %>
+    </div>
+  </fieldset>
+  
+  <fieldset class="control-group
+                   <% if @user.errors[:name].any? %>error<% end %>">
+    <%= f.label :name, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :name %>
+      <% if @user.errors[:name].any? %>
+      <span class="help-inline">Name <%= @user.errors[:name] %>.</span>
+      <% end %>
+    </div>
+
+  </fieldset>
+
+  <fieldset class="control-group
+                   <% if @user.errors[:password].any? %>error<% end %>">
+    <%= f.label :password, :class => "control-label" %>
+    <div class="controls">
+      <%= f.password_field :password %>
+      <% if @user.errors[:password].any? %>
+      <span class="help-inline">Password <%= @user.errors[:password] %>.</span>
+      <% end %>
+    </div>
+
+  </fieldset>  
+
+  <fieldset class="control-group
+                   <% if @user.errors[:password_confirmation].any? %>
+                   error
+                   <% end %>">
+    <%= f.label :password_confirmation, :class => "control-label" %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation %>
+      <% if @user.errors[:password_confirmation].any? %>
+      <span class="help-inline">Password confirmation 
+        <%= @user.errors[:password_confirmation] %>.</span>
+      <% end %>
+    </div>
+
+  </fieldset>  
+
+  <%= f.submit "Sign up", :class => "btn btn-primary btn-large" %>
+
+  <% end %>
+</div>
