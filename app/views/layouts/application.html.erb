@@ -9,6 +9,20 @@
 </head>
 <body>
 
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "Code Reviews", root_path, :class => "brand" %>
+      <% if loggedin? %>
+      <%= render "/shared/home_nav" %>
+      <% else %>
+      <%= render "/shared/splash_nav" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
 <%= yield %>
 
 </body>

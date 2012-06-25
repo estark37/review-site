@@ -22,4 +22,10 @@ module SessionsHelper
     cookies.delete(:remember_token)
   end
 
+  def logged_in_user
+    unless loggedin?
+      redirect_to root_path
+    end
+  end
+
 end

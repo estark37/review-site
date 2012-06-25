@@ -1,0 +1,51 @@
+<div class="container">
+
+  <h1>Upload Code</h1>
+
+  <%= form_for @snippet do |f| %>
+
+  <fieldset class="control-group 
+                   <% if @snippet.errors[:title].any? %>error<% end %>">
+    <%= f.label :title, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :title %>
+      <% if @snippet.errors[:title].any? %>
+      <span class="help-inline">Title <%= @snippet.errors[:title] %>.</span>
+      <% end %>
+    </div>
+  </fieldset>
+
+  <fieldset class="control-group 
+            <% if @snippet.errors[:language_id].any? %>error<% end %>">
+
+    <%= f.label :language_id, :class => "control-label" %>
+    <div class="controls">
+      <%= collection_select :snippet, :language_id, Language.all, :id, :name %>
+      <% if @snippet.errors[:language_id].any? %>
+      <span class="help-inline">Language <%= @snippet.errors[:language_id] %>.</span>
+      <% end %>
+    </div>
+
+  </fieldset>
+
+  <fieldset class="control-group
+            <% if @snippet.errors[:code].any? %>error<% end %>">
+
+    <%= f.label :code, :class => "control-label" %>
+
+    <div class="controls">
+
+      <%= text_area :snippet, :code, :class => "span12", :cols => 80, :rows => 10 %>
+
+      <% if @snippet.errors[:code].any? %>
+      <span class="help-inline">Code <%= @snippet.errors[:code] %>.</span>
+      <% end %>
+
+    </div>
+  </fieldset>
+
+  <%= f.submit "Upload", :class => "btn btn-primary btn-large" %>
+
+  <% end %>
+
+</div>
