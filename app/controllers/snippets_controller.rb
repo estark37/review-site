@@ -18,4 +18,8 @@ class SnippetsController < ApplicationController
   def destroy
   end
 
+  def show
+    @snippet = Snippet.find_by_id(params[:id])
+  end
+
 end

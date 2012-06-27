@@ -1,6 +1,7 @@
 class Snippet < ActiveRecord::Base
   attr_accessible :code, :title, :language_id
   belongs_to :user
+  belongs_to :language
 
   validates :user_id, :presence => true
   validates :code, :presence => true

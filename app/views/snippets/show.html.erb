@@ -1,0 +1,14 @@
+<div class="container">
+  <h2><%= @snippet.title %></h2>
+  <h4>Author: <%= @snippet.user.name %></h4>
+  <h4>Date: <%= @snippet.created_at.to_s :long %></h4>
+  <h4>Language: <%= @snippet.language.name %></h4>
+
+  <br />
+  <div class="span12">
+
+    <pre class="prettyprint linenums"><%= @snippet.code %></pre>
+
+  </div>
+  
+</div>
