@@ -6,6 +6,18 @@
 
   <div class="spacer span12"></div>
 
+  <% if @snippet.description %>
+
+  <div class="row">
+    <div class="span12">
+      <p><%= @snippet.description %></p>
+    </div>
+  </div>
+
+  <div class="spacer span12"></div>
+
+  <% end %>
+
   <div class="span12">
 
     <pre class="prettyprint linenums"><%= @snippet.code %></pre>

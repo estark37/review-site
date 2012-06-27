@@ -29,13 +29,32 @@
   </fieldset>
 
   <fieldset class="control-group
+            <% if @snippet.errors[:description].any? %>error<% end %>">
+
+    <%= f.label :description, :class => "control-label" %>
+
+    <div class="controls">
+
+      <%= text_area :snippet, :description, :class =>
+            "span6", :rows => 5 %>
+
+      <% if @snippet.errors[:description].any? %>
+      <span class="help-inline">
+        Description <%= @snippet.errors[:description] %>.
+      </span>
+      <% end %>
+
+    </div>
+  </fieldset>
+
+  <fieldset class="control-group
             <% if @snippet.errors[:code].any? %>error<% end %>">
 
     <%= f.label :code, :class => "control-label" %>
 
     <div class="controls">
 
-      <%= text_area :snippet, :code, :class => "span12", :cols => 80, :rows => 10 %>
+      <%= text_area :snippet, :code, :class => "span8", :rows => 10 %>
 
       <% if @snippet.errors[:code].any? %>
       <span class="help-inline">Code <%= @snippet.errors[:code] %>.</span>

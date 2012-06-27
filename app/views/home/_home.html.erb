@@ -32,12 +32,31 @@
 <div class="row">
   <center>
 
-    <div class="span6">
-      <h4>Your code</h4>
+
+    <div class="span4 offset2">
+      <h3>Your code</h3>
+
+      <% if current_user.snippets.empty? %>
+      <br />
+      <dt>None yet!</dt>
+      <% end %>
+
+      <dl class="dl-horizontal">
+        <% for c in current_user.snippets %>
+        <dt><%= link_to c.title, c %></dt>
+        <dd><%= c.description %></dd>
+        <% end %>
+      </dl>
     </div>
 
-    <div class="span6">
-      <h4>Your reviews</h4>
+    <div class="span4">
+      <h3>Your reviews</h3>
+
+      <% if true %>   
+      <br />
+      <p>None yet!</p>
+      <% end %>
+
     </div>
 
   </center>

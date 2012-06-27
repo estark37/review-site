@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625223457) do
+ActiveRecord::Schema.define(:version => 20120627010012) do
 
   create_table "languages", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120625223457) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "language_id"
+    t.string   "description"
   end
 
   add_index "snippets", ["user_id", "created_at"], :name => "index_snippets_on_user_id_and_created_at"
