@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627010012) do
+ActiveRecord::Schema.define(:version => 20120627014221) do
 
   create_table "languages", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,18 @@ ActiveRecord::Schema.define(:version => 20120627010012) do
   end
 
   add_index "languages", ["name"], :name => "index_languages_on_name", :unique => true
+
+  create_table "reviews", :force => true do |t|
+    t.string   "contents"
+    t.integer  "line"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "snippet_id"
+  end
+
+  add_index "reviews", ["snippet_id"], :name => "index_reviews_on_snippet_id"
+  add_index "reviews", ["user_id"], :name => "index_reviews_on_user_id"
 
   create_table "snippets", :force => true do |t|
     t.integer  "user_id"

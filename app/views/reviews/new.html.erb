@@ -1,0 +1,15 @@
+<%= form_for @review do |f| %>
+
+<%= f.hidden_field :snippet_id %>
+
+<fieldset class="control-group
+                 <% if @review.errors[:contents].any? %>error<% end %>">
+  <div class="controls">
+    <%= text_area :review, :contents, :class => "span4", :rows => 5 %>
+  </div>
+</fieldset>
+
+<%= f.submit "Review", :class => "btn btn-large btn-primary" %>
+
+<% end %>
+
