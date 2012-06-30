@@ -1,27 +1,48 @@
 <div class="container">
-  <h2><%= @snippet.title %></h2>
-  <h4>Author: <%= @snippet.user.name %></h4>
-  <h4>Date: <%= @snippet.created_at.to_s :long %></h4>
-  <h4>Language: <%= @snippet.language.name %></h4>
 
   <div class="spacer span12"></div>
 
   <div class="row">
     <div class="span7">
+      <h2><%= @snippet.title %></h2>
+      <h4>Author: <%= @snippet.user.name %></h4>
+      <h4>Date: <%= @snippet.created_at.to_s :long %></h4>
+      <h4>Language: <%= @snippet.language.name %></h4>
+
+
       <% if @snippet.description %>
       <p><%= @snippet.description %></p>
-
-      <div class="spacer"></div>
       <% end %>
 
+      <div class="spacer"></div>
       <pre class="prettyprint linenums"><%= @snippet.code %></pre>
     </div>
 
     <input type="hidden" id="snippet_id" value="<%= @snippet.id %>" />
+
+    <% if @snippet.user.name != current_user.name %>
     <div class="span5" id="new_review">
       <%= link_to "", new_review_path, :id => "new_review_url", :class =>
             "hidden" %>
     </div>
+    <% end %>
   </div>
+
+  <hr />
+
+  <% if !@snippet.reviews.empty? %>
+  <div class="row">    
+    <div class="span12">
+      <% for r in @snippet.reviews %>
+      <p>
+        <%= r.contents %><br />
+        <small><i>by <%= link_to r.user.name, r.user %></i> at <%= r.created_at.to_s :long %></small>
+      </p>
+      </hr>
+
+      <% end %>
+    </div>
+  </div>
+  <% end %>
   
 </div>

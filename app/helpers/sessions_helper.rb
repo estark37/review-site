@@ -12,6 +12,10 @@ module SessionsHelper
   def current_user
     @current_user ||= User.find_by_remember_token(cookies[:remember_token])
   end
+  
+  def current_user?(user)
+    @current_user == user
+  end
 
   def loggedin?
     !self.current_user.nil?
@@ -24,6 +28,13 @@ module SessionsHelper
 
   def logged_in_user
     unless loggedin?
+      redirect_to root_path
+    end
+  end
+
+  def correct_user
+    @user = User.find_by_id(params[:id])
+    unless loggedin? && current_user?(@user)
       redirect_to root_path
     end
   end

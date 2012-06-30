@@ -1,0 +1,56 @@
+<% if !@user
+     @user = current_user
+   end %>
+
+<div class="row">
+  <center>
+
+    <div class="span4 offset2">
+      <h3>
+        <% if @user.id == current_user.id %>
+        Your 
+        <% else %>
+        <%= @user.name %>'s 
+        <% end %>
+        code
+      </h3>
+
+      <% if @user.snippets.empty? %>
+      <br />
+      <p>None yet!</p>
+      <% end %>
+
+      <dl class="dl-horizontal">
+        <% for c in @user.snippets %>
+        <dt><%= link_to c.title, c %></dt>
+        <dd><%= c.description %></dd>
+        <% end %>
+      </dl>
+    </div>
+
+    <div class="span4">
+      <h3>
+        <% if @user.id == current_user.id %>
+        Your 
+        <% else %>
+        <%= @user.name %>'s 
+        <% end %>
+        reviews
+      </h3>
+
+      <% if @user.reviews.empty? %>
+      <br />
+      <p>None yet!</p>
+      <% end %>
+      
+      <dl class="dl-horizontal">
+        <% for r in @user.reviews %>
+        <dt>On <%= link_to r.snippet.title, r.snippet %></dt>
+        <dd><%= r.contents %></dd>
+        <% end %>
+      </dl>
+
+    </div>
+
+  </center>
+</div>

@@ -1,0 +1,7 @@
+.edit {
+    vertical-align: middle
+}
+
+fieldset.edit {
+    display: none;
+}

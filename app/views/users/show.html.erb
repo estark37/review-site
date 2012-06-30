@@ -1,0 +1,38 @@
+<div class="user_form">
+
+  <%= form_for @user, :method => "put" do |f| %>
+
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <h1>
+          <span class="editable" id="show-name" data-info="name">
+            <span class="data"><%= @user.name %></span> 
+            <% if @is_me %><%= link_to "", "#", :class => "icon-pencil edit" %><% end %>
+          </span>
+        </h1>
+
+        <fieldset id="edit-name" class="control-group edit
+                                        <% if @user.errors[:name].any? %>error<% end %>">
+          <div class="controls">
+            <%= f.text_field :name %>
+          </div>
+        </fieldset>
+
+        <p>
+          Member since <%= @user.created_at.to_s :long %>.
+        </p>
+      </div>
+    </div>
+
+    <hr />
+
+    <%= render "shared/user_content" %>
+
+  </div>
+
+  <%= f.submit "Submit", :class => "hidden" %>
+
+  <% end %>
+
+</div>
